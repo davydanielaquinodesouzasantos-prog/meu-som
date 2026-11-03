@@ -1,1 +1,102 @@
 
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090914">
+<title>MEU SOM</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090914;color:white;font-family:Arial,sans-serif}
+header{padding:25px;background:linear-gradient(135deg,#641cff,#10102b)}
+h1{font-size:34px;margin:5px 0}
+header p{color:#ddd}
+nav{display:flex;justify-content:space-around;background:#17172a;padding:15px;position:sticky;top:0}
+button{background:#252545;color:white;border:0;border-radius:12px;padding:12px;margin:4px;cursor:pointer}
+main{padding:16px}
+h2{color:#b69aff}
+.card{background:#19192d;padding:17px;border-radius:15px;margin:12px 0}
+input{padding:12px;border-radius:10px;width:100%;margin:10px 0}
+a{color:#c9aaff}
+footer{text-align:center;padding:25px;color:#aaa}
+</style>
+</head>
+<body>
+<header>
+<h1>🎵 MEU SOM</h1>
+<p>Sua música, seus jogos, seu mundo!</p>
+</header>
+<nav>
+<button onclick="abrir('musica')">🎵 Música</button>
+<button onclick="abrir('jogos')">🎮 Jogos</button>
+<button onclick="abrir('apps')">📱 Apps</button>
+</nav>
+<main>
+<section id="inicio">
+<div class="card">
+<h2>Bem-vindo ao MEU SOM!</h2>
+<p>Escolha sua música, descubra novos sons e divirta-se.</p>
+</div>
+<div class="card">
+<h2>🎧 Suas músicas</h2>
+<input type="file" id="arquivo" accept="audio/*" multiple>
+<div id="lista"></div>
+<audio id="player" controls style="width:100%"></audio>
+</div>
+</section>
+
+<section id="musica" hidden>
+<h2>🎵 Estilos musicais</h2>
+<div class="card">🎤 Sertanejo</div>
+<div class="card">🪗 Forró e Piseiro</div>
+<div class="card">🎧 Funk</div>
+<div class="card">🎸 Rock</div>
+<div class="card">🌎 Músicas internacionais</div>
+<div class="card">🇧🇷 Músicas brasileiras</div>
+</section>
+
+<section id="jogos" hidden>
+<h2>🎮 Jogos</h2>
+<div class="card">🏎️ Corrida
+<p><a href="https://play.google.com/store/search?q=corrida&c=apps">Encontrar jogos</a></p></div>
+<div class="card">⚽ Futebol
+<p><a href="https://play.google.com/store/search?q=futebol&c=apps">Encontrar jogos</a></p></div>
+<div class="card">🔥 Free Fire
+<p><a href="https://play.google.com/store/apps/details?id=com.dts.freefireth">Abrir Free Fire</a></p></div>
+<div class="card">🎯 PUBG Mobile
+<p><a href="https://play.google.com/store/apps/details?id=com.tencent.ig">Abrir PUBG</a></p></div>
+<div class="card">🃏 Cartas e quebra-cabeças
+<p><a href="https://play.google.com/store/search?q=jogos%20de%20cartas&c=apps">Encontrar jogos</a></p></div>
+</section>
+
+<section id="apps" hidden>
+<h2>📱 Redes sociais</h2>
+<div class="card"><a href="https://www.instagram.com/">Instagram</a></div>
+<div class="card"><a href="https://www.youtube.com/">YouTube</a></div>
+<div class="card"><a href="https://www.tiktok.com/">TikTok</a></div>
+<div class="card"><a href="https://www.facebook.com/">Facebook</a></div>
+<div class="card"><a href="https://www.whatsapp.com/">WhatsApp</a></div>
+</section>
+</main>
+<footer>MEU SOM © 2026</footer>
+<script>
+function abrir(id){
+['inicio','musica','jogos','apps'].forEach(x=>{
+document.getElementById(x).hidden=x!==id;
+});
+}
+document.getElementById('arquivo').onchange=function(){
+let lista=document.getElementById('lista');
+lista.innerHTML='';
+[...this.files].forEach(f=>{
+let b=document.createElement('button');
+b.textContent='▶ '+f.name;
+b.onclick=()=>document.getElementById('player').src=URL.createObjectURL(f);
+lista.appendChild(b);
+});
+};
+</script>
+</body>
+</html>
